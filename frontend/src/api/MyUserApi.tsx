@@ -34,3 +34,39 @@ export function useCreateMyUser() {
 
   return { createUser, isLoading, isError, isSuccess };
 }
+
+type UpdateMyUserRequest = {
+  name: string;
+  addressLine1: string;
+  city: string;
+  country: string;
+};
+
+export function useUpdateMyUser() {
+  const { getAccessTokenSilently } = useAuth0();
+  const updateMyUserRequest = async (formData: UpdateMyUserRequest) => {
+    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${await getAccessTokenSilently()}`,
+      },
+      body: JSON.stringify(formData),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to update user");
+    }
+
+    return response.json();
+  };
+  const {
+    mutateAsync: updateUser,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+    reset,
+  } = useMutation(updateMyUserRequest);
+
+  return { updateUser, isLoading };
+}
