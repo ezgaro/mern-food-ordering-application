@@ -45,7 +45,11 @@ export const jwtParse = async (
     }
 
     req.auth0Id = auth0Id;
-    req.userId = user._id.toString();
+    if (user._id) {
+      req.userId = user._id.toString();
+    } else {
+      return res.status(401).send("Unauthorized");
+    }
     next();
   } catch (error) {
     return res.status(401).send("Unauthorized");
