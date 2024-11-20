@@ -4,7 +4,6 @@ import HomePage from "./pages/HomePage.js";
 import AuthCallbackPage from "./pages/AuthCallbackPage.js";
 import UserProfilePage from "./pages/UserProfilePage.js";
 import ProtectedRoute from "./auth/ProtectedRoute.js";
-import ManageRestaurantPage from "./pages/ManageRestaurantPage.js";
 
 const AppRoutes = () => {
   return (
@@ -24,14 +23,6 @@ const AppRoutes = () => {
           element={
             <Layout>
               <UserProfilePage />
-            </Layout>
-          }
-        ></Route>
-        <Route
-          path="/manage-restaurant"
-          element={
-            <Layout>
-              <ManageRestaurantPage />
             </Layout>
           }
         ></Route>
