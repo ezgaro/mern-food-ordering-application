@@ -9,7 +9,7 @@ const storage = multer.memoryStorage();
 const upload = multer({
   storage: storage,
   limits: {
-    fieldSize: 5 * 1024 * 1024, //5mb
+    fileSize: 5 * 1024 * 1024, //5mb
   },
 });
 
@@ -19,7 +19,7 @@ router.post(
   validateMyRestaurantRequest,
   jwtCheck,
   jwtParse,
-  MyRestaurantController.createMyResturant
+  MyRestaurantController.createMyRestaurant
 );
 
 export default router;

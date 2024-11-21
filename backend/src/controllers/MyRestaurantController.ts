@@ -3,7 +3,7 @@ import Restaurant from "../../models/restaurant";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
 
-async function createMyResturant(req: Request, res: Response) {
+async function createMyRestaurant(req: Request, res: Response) {
   try {
     const existingRestaurant = await Restaurant.findOne({
       user: req.userId,
@@ -29,4 +29,4 @@ async function createMyResturant(req: Request, res: Response) {
   }
 }
 
-export default { createMyResturant };
+export default { createMyRestaurant };
