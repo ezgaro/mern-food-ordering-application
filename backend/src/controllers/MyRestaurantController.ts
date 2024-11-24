@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Restaurant from "../../models/restaurant";
+import Restaurant from "../models/restaurant";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
 
