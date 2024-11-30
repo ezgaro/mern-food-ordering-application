@@ -17,14 +17,14 @@ type CheckoutSessionRequest = {
     addressLine1: string;
     city: string;
   };
-  restaurantId: string;
+  restaurant: string;
 };
 
 async function createCheckoutSession(req: Request, res: Response) {
   try {
     const checkoutSessionRequest: CheckoutSessionRequest = req.body;
     const restaurant = await Restaurant.findById(
-      checkoutSessionRequest.restaurantId
+      checkoutSessionRequest.restaurant
     );
 
     if (!restaurant) {
