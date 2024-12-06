@@ -59,7 +59,7 @@ export type Order = {
     city: string;
     email: string;
   };
-  tottalAmount: number;
+  totalAmount: number;
   status: OrderStatus;
   createdAt: string;
 };
