@@ -7,6 +7,19 @@ const STRIPE = new Stripe(process.env.STRIPE_API_KEY as string);
 const FRONTEND_URL = process.env.FRONTEND_URL as string;
 const STRIPE_ENDPOINT_SECRET = process.env.STRIPE_WEBHOOK_SECRET as string;
 
+async function getMyOrders(req: Request, res: Response) {
+  try {
+    const orders = await Order.find({ user: req.userId })
+      .populate("restaurant")
+      .populate("user");
+
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
 type CheckoutSessionRequest = {
   cartItems: {
     menuItemId: string;
@@ -149,4 +162,5 @@ async function createSession(
 export default {
   createCheckoutSession,
   stripeWebhookHandler,
+  getMyOrders,
 };
