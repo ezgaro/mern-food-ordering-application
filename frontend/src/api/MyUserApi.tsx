@@ -41,9 +41,9 @@ export function useGetMyUser() {
 export function useCreateMyUser() {
   const { getAccessTokenSilently } = useAuth0();
 
-  async function createMyUser(user: CreateUserRequest) {
+  async function createMyUserRequest(user: CreateUserRequest) {
     const accessToken = await getAccessTokenSilently();
-    const res = await fetch(`${API_BASE_URL}/api/my/user`, {
+    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -51,7 +51,8 @@ export function useCreateMyUser() {
       },
       body: JSON.stringify(user),
     });
-    if (!res.ok) {
+
+    if (!response.ok) {
       throw new Error("Failed to create user");
     }
   }
@@ -60,7 +61,7 @@ export function useCreateMyUser() {
     isLoading,
     isError,
     isSuccess,
-  } = useMutation(createMyUser); //useMutation(used to write information) will automatically fetch the data and cache it
+  } = useMutation(createMyUserRequest); //useMutation(used to write information) will automatically fetch the data and cache it
 
   return { createUser, isLoading, isError, isSuccess };
 }

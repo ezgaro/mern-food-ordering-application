@@ -9,14 +9,14 @@ const getCurrentUser = async (req: Request, res: Response) => {
     }
     res.json(currentUser);
   } catch (error) {
-    console.error(error);
-    res.status(500).send("An error occurred while fetching the user");
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
   }
 };
 
 const createCurrentUser = async (req: Request, res: Response) => {
   try {
-    const { auth0Id, email, name } = req.body;
+    const { auth0Id } = req.body;
     const existingUser = await User.findOne({ auth0Id });
 
     // 1. Check if the user already exists in the database

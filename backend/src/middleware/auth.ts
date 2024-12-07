@@ -6,8 +6,8 @@ import User from "../models/user";
 declare global {
   namespace Express {
     interface Request {
-      auth0Id: string;
       userId: string;
+      auth0Id: string;
     }
   }
 }
@@ -26,32 +26,26 @@ export const jwtParse = async (
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith("Bearer ")) {
-    return res.status(401).send("Unauthorized");
+    return res.sendStatus(401);
   }
 
+  // Bearer lshdflshdjkhvjkshdjkvh34h5k3h54jkh
   const token = authorization.split(" ")[1];
 
   try {
-    const decoded = jwt.decode(token) as jwt.JwtPayload; // decoded is now a JwtPayload
-    const auth0Id = decoded.sub; // sub is the Auth0 user ID
-
-    if (!auth0Id) {
-      return res.status(401).send("Unauthorized");
-    }
+    const decoded = jwt.decode(token) as jwt.JwtPayload;
+    const auth0Id = decoded.sub;
 
     const user = await User.findOne({ auth0Id });
+
     if (!user) {
-      return res.status(401).send("Unauthorized");
+      return res.sendStatus(401);
     }
 
-    req.auth0Id = auth0Id;
-    if (user._id) {
-      req.userId = user._id.toString();
-    } else {
-      return res.status(401).send("Unauthorized");
-    }
+    req.auth0Id = auth0Id as string;
+    req.userId = user._id.toString();
     next();
   } catch (error) {
-    return res.status(401).send("Unauthorized");
+    return res.sendStatus(401);
   }
 };
