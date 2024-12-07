@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Restaurant from "../models/restaurant";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
+import Order from "../models/order";
 
 async function getMyRestaurant(req: Request, res: Response) {
   try {
@@ -67,6 +68,24 @@ async function updateMyRestaurant(req: Request, res: Response) {
   }
 }
 
+async function getMyRestaurantOrders(req: Request, res: Response) {
+  try {
+    const restaurant = await Restaurant.findOne({ user: req.userId });
+
+    if (!restaurant)
+      return res.status(404).json({ message: "Restaurant not found" });
+
+    const orders = await Order.find({ restaurant: restaurant._id })
+      .populate("restaurant")
+      .populate("user");
+
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
 async function upoladImage(file: Express.Multer.File) {
   const image = file;
   const base64Image = Buffer.from(image.buffer).toString("base64");
@@ -76,4 +95,9 @@ async function upoladImage(file: Express.Multer.File) {
   return uploadResponse.url;
 }
 
-export default { createMyRestaurant, getMyRestaurant, updateMyRestaurant };
+export default {
+  createMyRestaurant,
+  getMyRestaurant,
+  updateMyRestaurant,
+  getMyRestaurantOrders,
+};

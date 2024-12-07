@@ -1,13 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./layouts/layout";
-import HomePage from "./pages/HomePage.js";
-import AuthCallbackPage from "./pages/AuthCallbackPage.js";
-import UserProfilePage from "./pages/UserProfilePage.js";
-import ProtectedRoute from "./auth/ProtectedRoute.js";
-import ManageRestaurantPage from "./pages/ManageRestaurantPage.js";
-import SearchPage from "./pages/SearchPage.js";
-import DetailPage from "./pages/DetailPage.js";
-import OrderStatusPage from "./pages/OrderStatusPage.js";
+import HomePage from "./pages/HomePage";
+import AuthCallbackPage from "./pages/AuthCallbackPage";
+import UserProfilePage from "./pages/UserProfilePage";
+import ProtectedRoute from "./auth/ProtectedRoute";
+import ManageRestaurantPage from "./pages/ManageRestaurantPage";
+import SearchPage from "./pages/SearchPage";
+import DetailPage from "./pages/DetailPage";
+import OrderStatusPage from "./pages/OrderStatusPage";
 
 const AppRoutes = () => {
   return (
@@ -15,28 +15,28 @@ const AppRoutes = () => {
       <Route
         path="/"
         element={
-          <Layout showHero={true}>
+          <Layout showHero>
             <HomePage />
           </Layout>
         }
-      ></Route>
+      />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />
       <Route
         path="/search/:city"
         element={
-          <Layout>
+          <Layout showHero={false}>
             <SearchPage />
           </Layout>
         }
-      ></Route>
+      />
       <Route
         path="/detail/:restaurantId"
         element={
-          <Layout>
+          <Layout showHero={false}>
             <DetailPage />
           </Layout>
         }
-      ></Route>
+      />
       <Route element={<ProtectedRoute />}>
         <Route
           path="/order-status"
@@ -45,7 +45,7 @@ const AppRoutes = () => {
               <OrderStatusPage />
             </Layout>
           }
-        ></Route>
+        />
         <Route
           path="/user-profile"
           element={
@@ -53,7 +53,7 @@ const AppRoutes = () => {
               <UserProfilePage />
             </Layout>
           }
-        ></Route>
+        />
         <Route
           path="/manage-restaurant"
           element={
@@ -61,9 +61,10 @@ const AppRoutes = () => {
               <ManageRestaurantPage />
             </Layout>
           }
-        ></Route>
+        />
       </Route>
-      <Route path="*" element={<Navigate to="/" />}></Route>
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
