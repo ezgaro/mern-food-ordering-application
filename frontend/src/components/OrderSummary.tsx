@@ -12,7 +12,7 @@ type Props = {
 };
 
 const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
-  const getTotalCost = () => {
+  function getTotalCost() {
     const totalInPence = cartItems.reduce(
       (total, cartItem) => total + cartItem.price * cartItem.quantity,
       0
@@ -21,7 +21,7 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
     const totalWithDelivery = totalInPence + restaurant.deliveryPrice;
 
     return (totalWithDelivery / 100).toFixed(2);
-  };
+  }
 
   return (
     <>

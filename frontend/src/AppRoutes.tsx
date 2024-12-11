@@ -9,7 +9,7 @@ import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
 
-const AppRoutes = () => {
+function AppRoutes() {
   return (
     <Routes>
       <Route
@@ -67,6 +67,6 @@ const AppRoutes = () => {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-};
+}
 
 export default AppRoutes;

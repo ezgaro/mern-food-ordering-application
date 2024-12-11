@@ -40,12 +40,12 @@ export default function SearchBar({
     form.reset({ searchQuery });
   }, [form, searchQuery]);
 
-  const handleReset = () => {
+  function handleReset() {
     form.reset({
       searchQuery: "",
     });
     onReset?.();
-  };
+  }
 
   return (
     <Form {...form}>

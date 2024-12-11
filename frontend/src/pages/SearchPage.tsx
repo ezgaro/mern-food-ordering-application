@@ -15,7 +15,7 @@ export type SearchState = {
   sortOption: string;
 };
 
-const SearchPage = () => {
+function SearchPage() {
   const { city } = useParams();
   const [searchState, setSearchState] = useState<SearchState>({
     searchQuery: "",
@@ -59,13 +59,13 @@ const SearchPage = () => {
     }));
   };
 
-  const resetSearch = () => {
+  function resetSearch() {
     setSearchState((prevState) => ({
       ...prevState,
       searchQuery: "",
       page: 1,
     }));
-  };
+  }
 
   if (isLoading) {
     <span>Loading ...</span>;
@@ -113,6 +113,6 @@ const SearchPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SearchPage;
