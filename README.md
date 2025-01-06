@@ -57,8 +57,6 @@ A full-stack food ordering application built using the **MERN stack**. This proj
 
 ## Folder Structure
 
-## Folder Structure
-
 ### Frontend
 
 - `src/components`: Custom reusable UI components.
