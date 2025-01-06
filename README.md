@@ -113,18 +113,18 @@ npm install
 
 ### Frontend .env
 
-VITE_AUTH0_DOMAIN=<Auth0_Domain>
-VITE_AUTH0_CLIENT_ID=<Auth0_Client_ID>
-VITE_BACKEND_URL=<Backend_URL>
+- **VITE_AUTH0_DOMAIN**=<Auth0_Domain>
+- **VITE_AUTH0_CLIENT_ID**=<Auth0_Client_ID>
+- **VITE_BACKEND_URL**=<Backend_URL>
 
 ### Backend .env
 
-PORT=7000
-MONGO_URI=<MongoDB_URI>
-STRIPE_API_KEY=<Stripe_Secret_Key>
-FRONTEND_URL=<Frontend_URL>
-AUTH0_DOMAIN=<Auth0_Domain>
-AUTH0_AUDIENCE=<Auth0_Audience>
+- **PORT**=7000
+- **MONGO_URI**=<MongoDB_URI>
+- **STRIPE_API_KEY**=<Stripe_Secret_Key>
+- **FRONTEND_URL**=<Frontend_URL>
+- **AUTH0_DOMAIN**=<Auth0_Domain>
+- **AUTH0_AUDIENCE**=<Auth0_Audience>
 
 4. Start the application:
 
